@@ -1,0 +1,42 @@
+//Brute force approach
+
+
+class Solution {
+    public static boolean isPalindrome(String str) {
+    int left = 0;
+    int right = str.length() - 1;
+    
+    while (left < right) {
+        // Compare characters at both ends
+        if (str.charAt(left) != str.charAt(right)) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true; // All characters matched
+    }
+    public String longestPalindrome(String s) {
+
+        int n=s.length();
+        if(n==1) return s;
+        
+        String ans="";
+        
+       for(int i =0;i<n-1;i++) {
+            int j=n-1;
+            while(j>=i){
+                String sub =s.substring(i,j+1);
+                boolean a=isPalindrome(sub);
+                int l=sub.length();
+                int m=ans.length();
+
+                if(a==true && l>m){
+                    ans=sub;
+                }
+                j--;
+            }
+       }
+       return ans;
+    }
+}
